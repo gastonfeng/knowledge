@@ -30,4 +30,4 @@ Viewer = function(plugin, parameters)
         parameters.title = decodeURIComponent(matches[1]);
     }
     return original_Viewer(plugin, parameters);
-}
+};

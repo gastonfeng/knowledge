@@ -2531,8 +2531,8 @@ var LocalPdfManager = (function LocalPdfManagerClosure() {
 
   LocalPdfManager.prototype.terminate =
       function LocalPdfManager_terminate() {
-    return;
-  };
+
+      };
 
   return LocalPdfManager;
 })();
@@ -3045,7 +3045,7 @@ var PDFDocument = (function PDFDocumentClosure() {
         }
         // removing "%PDF-"-prefix
         this.pdfFormatVersion = version.substring(5);
-        return;
+
       }
       // May not be a PDF file, continue anyway.
     },
@@ -3752,7 +3752,7 @@ var Catalog = (function CatalogClosure() {
             // will be descended into.
             nodesToVisit = [kids[pageIndex - currentPageIndex]];
             currentPageIndex = pageIndex;
-            continue;
+
           } else {
             for (var last = kids.length - 1; last >= 0; last--) {
               nodesToVisit.push(kids[last]);
@@ -12080,7 +12080,7 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
         }
         if (charCode in encoding && widthsByGlyphName[encoding[charCode]]) {
           widths[charCode] = widthsByGlyphName[encoding[charCode]];
-          continue;
+
         }
       }
       return widths;
@@ -30774,7 +30774,7 @@ var Lexer = (function LexerClosure() {
           break;
         } else if (specialChars[ch] === 1) {
           ch = this.nextChar();
-          continue;
+
         } else {
           if (isFirstHex) {
             firstDigit = toHexDigit(ch);

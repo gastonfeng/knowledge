@@ -236,7 +236,7 @@ openerp.attachment_preview = function(instance)
             else
             {
                 this.$el.find('.oe-binary-preview').remove();
-            };
+            }
         },
     });
-}    
+};

@@ -89,4 +89,4 @@ openerp.document_choose_directory = function(instance)
             return _.chain(attachments).sortBy('name');
         },
     });
-}
+};

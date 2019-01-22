@@ -6,7 +6,7 @@ var _t = instance.web._t,
         redraw: function() {
             var self = this;
             this._super.apply(this, arguments);
-            self.$el.find('.oe_sidebar_add_attachment').after(QWeb.render('AddDocfromserver', {widget: self}))
+            self.$el.find('.oe_sidebar_add_attachment').after(QWeb.render('AddDocfromserver', {widget: self}));
             self.$el.find('.open').on('click', function (e) {
                 self.on_call_new_view_function();
             });
@@ -45,7 +45,7 @@ var _t = instance.web._t,
             e.stopPropagation();
             var self = this;
             var view = self.getParent();
-            self.model_view = view.dataset.model
+            self.model_view = view.dataset.model;
             var ids = ( view.fields_view.type != "form" )? view.groups.get_selection().ids : [ view.datarecord.id ];
             // Context dictionary variable
             var context = {
