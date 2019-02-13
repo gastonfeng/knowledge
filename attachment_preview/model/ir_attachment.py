@@ -29,11 +29,11 @@ class IrAttachment(Model):
     _inherit = 'ir.attachment'
 
     def get_binary_extension(
-            self, cr, uid, model, ids, binary_field, filename_field=None,
+            self,  model, ids, binary_field, filename_field=None,
             context=None):
         result = {}
         for this in self.pool[model].browse(
-                cr, uid,
+                
                 ids if isinstance(ids, collections.Iterable) else [ids],
                 context=context):
             if not this.id:
@@ -63,6 +63,6 @@ class IrAttachment(Model):
             result[this.id] = (extension or '').lstrip('.').lower()
         return result if isinstance(ids, collections.Iterable) else result[ids]
 
-    def get_attachment_extension(self, cr, uid, ids, context=None):
+    def get_attachment_extension(self,  ids, context=None):
         return self.get_binary_extension(
-            cr, uid, self._name, ids, 'datas', 'datas_fname', context=context)
+             self._name, ids, 'datas', 'datas_fname', context=context)

@@ -29,8 +29,8 @@ class document_page_history(orm.Model):
     }
 
     _defaults = {
-        'company_id': lambda self, cr, uid, c: self.pool.get('res.company')
-        ._company_default_get(cr, uid, 'document_page_history', context=c)
+        'company_id': lambda self,  c: self.pool.get('res.company')
+        ._company_default_get( 'document_page_history', context=c)
     }
 
 
@@ -41,7 +41,7 @@ class document_page(orm.Model):
     }
 
     _defaults = {
-        'company_id': lambda self, cr, uid, c: self.pool.get('res.company')
-        ._company_default_get(cr, uid, 'document_page', context=c)
+        'company_id': lambda self,  c: self.pool.get('res.company')
+        ._company_default_get( 'document_page', context=c)
     }
 

@@ -35,7 +35,7 @@ class document_wizard(orm.Model):
                                            'Attachments'),
     }
 
-    def action_apply(self, cr, uid, ids, context=None):
+    def action_apply(self,  ids, context=None):
         if context is None:
             context = {}
         ir_attach_obj = self.pool.get('ir.attachment')
@@ -44,14 +44,14 @@ class document_wizard(orm.Model):
             context.get('model') or context.get('active_model'))
 
         name = ir_model_obj.browse(
-            cr, uid, context.get('ids') or context.get('active_ids'),
+             context.get('ids') or context.get('active_ids'),
             context=context)[0]['name']
-        data = self.read(cr, uid, ids, [], context=context)[0]
+        data = self.read( ids, [], context=context)[0]
         if not data['attachment_ids']:
             raise orm.except_orm(
                 _('Error'),
                 _('You have to select at least 1 Document. And try again'))
-        for attach in ir_attach_obj.browse(cr, uid, data['attachment_ids'],
+        for attach in ir_attach_obj.browse( data['attachment_ids'],
                                            context=context):
             data_attach = {
                 'res_model': context.get('model') or
@@ -62,5 +62,5 @@ class document_wizard(orm.Model):
                 'attachment_id': attach.id,
             }
             # Created attachment_document_ids
-            ir_attach_doc_obj.create(cr, uid, data_attach, context=context)
+            ir_attach_doc_obj.create( data_attach, context=context)
         return {'type': 'ir.actions.act_window_close'}

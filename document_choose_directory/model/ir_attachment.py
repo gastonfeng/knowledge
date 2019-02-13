@@ -24,7 +24,7 @@ from openerp.osv.orm import Model
 class IrAttachment(Model):
     _inherit = 'ir.attachment'
 
-    def read(self, cr, uid, ids, fields_to_read=None, context=None,
+    def read(self,  ids, fields_to_read=None, context=None,
              load='_classic_read'):
         '''inject the extra field we need in the web client. This saves us a
         couple of extra client side calls'''
@@ -33,6 +33,6 @@ class IrAttachment(Model):
                  'write_uid', 'write_date']):
             fields_to_read = fields_to_read + ['parent_id']
         result = super(IrAttachment, self).read(
-            cr, uid, ids, fields_to_read=fields_to_read, context=context,
+             ids, fields_to_read=fields_to_read, context=context,
             load=load)
         return result

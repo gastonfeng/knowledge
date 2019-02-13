@@ -32,23 +32,23 @@ class document_file(orm.Model):
                                                    'Records'),
     }
 
-    def create(self, cr, uid, data, context=None):
+    def create(self,  data, context=None):
         ir_attachment_document_obj = self.pool.get('ir.attachment.document')
-        res = super(document_file, self).create(cr, uid, data, context=context)
+        res = super(document_file, self).create( data, context=context)
         # Create attachment_document_ids with res_model, res_id and res_name
         if 'res_model' in data and 'res_id' in data:
-            ir_attachment_document_obj.create(cr, uid, {
+            ir_attachment_document_obj.create( {
                 'attachment_id': res,
                 'res_model': data['res_model'],
                 'res_id': data['res_id'],
                 'res_name': data.get(
                     'res_name', self.pool.get(data['res_model']).browse(
-                        cr, uid, data['res_id'],
+                         data['res_id'],
                         context=context).name_get()[0][1]),
             }, context=context)
         return res
 
-    def unlink(self, cr, uid, ids, context=None, check=True):
+    def unlink(self,  ids, context=None, check=True):
         ir_attach_doc_obj = self.pool.get('ir.attachment.document')
         if context is None:
             context = {}
@@ -62,13 +62,13 @@ class document_file(orm.Model):
                 ('attachment_id', 'in', ids),
             ]
             ids_to_unlink = ir_attach_doc_obj.search(
-                cr, uid, query, context=context)
+                 query, context=context)
             result = ir_attach_doc_obj.unlink(
-                cr, uid, ids_to_unlink, context=context)
+                 ids_to_unlink, context=context)
         else:
             # Normal delete
             result = super(document_file, self).unlink(
-                cr, uid, ids, context=context)
+                 ids, context=context)
         return result
 
 

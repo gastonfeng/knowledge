@@ -24,15 +24,15 @@ from openerp.osv.orm import Model
 class DocumentDirectory(Model):
     _inherit = 'document.directory'
 
-    def _get_candidates_for_resource(self, cr, uid, res_model, res_id,
+    def _get_candidates_for_resource(self,  res_model, res_id,
                                      context=None):
         '''return directories that can be chosen for a certain record of a
         certain model - called by js api, override as needed'''
         result = []
         for this in self.browse(
-                cr, uid,
+                
                 self.search(
-                    cr, uid,
+                    
                     [
                         ('type', '=', 'directory'),
                         ('ressource_type_id.model', '=', res_model),
@@ -42,13 +42,13 @@ class DocumentDirectory(Model):
             result.append(this)
         return result
 
-    def get_candidates_for_resource(self, cr, uid, res_model, res_id,
+    def get_candidates_for_resource(self,  res_model, res_id,
                                     context=None):
         '''return directories that can be chosen for a certain record of a
         certain model - js api'''
         result = []
         for this in self._get_candidates_for_resource(
-                cr, uid, res_model, res_id, context=context):
+                 res_model, res_id, context=context):
             result.append({
                 'id': this.id,
                 'name': this.name_get()[0][1],

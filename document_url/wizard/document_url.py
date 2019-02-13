@@ -18,14 +18,14 @@ class AddUrlWizard(orm.TransientModel):
         'url': fields.char('URL', required=True),
     }
 
-    def action_add_url(self, cr, uid, ids, context=None):
+    def action_add_url(self,  ids, context=None):
         """Adds the URL with the given name as an ir.attachment record."""
         if context is None:
             context = {}
         if not context.get('active_model'):
             return
         attachment_obj = self.pool['ir.attachment']
-        for form in self.browse(cr, uid, ids, context=context):
+        for form in self.browse( ids, context=context):
             url = urlparse(form.url)
             if not url.scheme:
                 url = urlparse('%s%s' % ('http://', form.url))
@@ -38,5 +38,5 @@ class AddUrlWizard(orm.TransientModel):
                     'res_id': active_id,
                     'res_model': context['active_model'],
                 }
-                attachment_obj.create(cr, uid, attachment, context=context)
+                attachment_obj.create( attachment, context=context)
         return {'type': 'ir.actions.act_close_wizard_and_reload_view'}
